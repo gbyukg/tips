@@ -1,0 +1,30 @@
+$1~$n # 位置参数 参数超过9个以上要使用${}表示, 如${11}
+$* # 所有的位置参数, 并且视为一个字符串
+$@ # 所有的位置参数, 但$@代表各位参数组成的串行
+$# # 参数位置的个数
+
+BASH # bash的完成路径
+REPLY # select和read没有设定读取变量时, 默认的变量名称为REPLAY
+BASH_ENV # 仅在bash非互动模式中使用, 在执行shell script时, 会先检查$BASH_ENV是否有指定启动文件,如果有则先执行它.
+CDPATH # 设定cd命令的所有路径, 多个以上的路径使用冒号:分隔
+HISTIGNORE # 指定不存入历史脚本文件的指令样式, 以:隔开
+HISTCONTROL # 控制指令是否存入历史脚本文件中
+# 三个可选值:
+# ignorespace: 凡是指令开头有空格符的, 不存入历史脚本文件中
+# ignoredups: 连续重复的指令, 只存一个
+# ignoreboth: 结合前两者的功能
+HISTFILE # 设定历史脚本文件的路径文件名.
+HSITFILESIZE # 历史脚本文件存储指令的最大行数. 默认500行
+# ls ps cd t开头的命令不会保存到历史记录中
+# &代表最后一个历史指令, 这表示如果一直键入重复的指令, 则只存入一个.
+export HISTIGNORE=ls:ps:cd:t*\&
+
+HOME # 设定用户的家目录位置
+HOSTNAME # 主机名
+LANG # 没有去语系(locale)的名称
+
+LINENO # script已执行到的行数
+PATH # 命令的搜索路径
+PPID # 父进程的进程编号
+PWD # 当前所在目录
+RANDOM # 生成一个随机数
