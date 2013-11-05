@@ -1,0 +1,26 @@
+pushd
+pushd [dir]
+若pushd后接目录, 则进入该目录, 并将该目录存放到目录栈中.
+若pushd后没接目录, 则进入到目录栈中的第二个目录中,并将第二个目录设定为栈中的第一个目录.
+
+popd
+进入栈中的第一个目录下, 并将该目录从栈中删除
+
+dirs
+显示当前栈中的所有目录
+选项:
+-v  在显示当前栈中目录的同时为每个目录添加索引, 从0开始.
+
+pushd ~n
+n为dirs -v显示的目录索引, 进入到指定索引的目录
+
+可设定一些别名:
+alias d="dirs"
+alias pu="pushd"
+alias po="popd"
+alias 1="pushd"
+alias 2="pushd +2"
+alias 3="pushd +3"
+alias 4="pushd +4"
+alias 5="pushd +5"
+alias 6="pushd +6"

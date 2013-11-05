@@ -1,9 +1,8 @@
-#!/bin/env/bash
+#!/usr/bin/env bash
 shopt -s -o nounset
 
 readonly tip_dir="$HOME/.tips"
 cur_file=${tip_dir}
-file_count=0
 
 cd ${tip_dir}
 
@@ -11,6 +10,7 @@ cat_file()
 {
   local random_file
   local random_num
+  local file_count
 
   # 忽略ig_开头的文件
   files=($(ls -F ${cur_file}| grep -iv '^ig_.*'))
