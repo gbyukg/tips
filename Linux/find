@@ -1,0 +1,77 @@
+语法
+·find path -option [-print] [-exec/-ok command] {} \;
+
+选项
+-name fileName
+-iname fileName     # 查找时忽略大小写
+-maxdepth n         # 限制向字文件迭代的最大深度n
+! expr              # 反转结果
+-not expr           # 同!一样
+-inum inode         # 使用文件的节点号inode查找文件
+-empty              # 查找空文件
+-type b/d/c/p/l/f   # 查是块设备、目录、字符设备、管道、符号链接、普通文件
+-perm               # 按执行权限来查找
+-user username      # 按文件属主查找
+-group groupname    # 按组来查找
+-mtime -n +n        # 按文件更改时间查找，-n指n天以内，+n指n天前
+-atime -n +n        # 按文件访问时间查找，找到文件后会修改文件访问时间
+-ctime -n +n        # 按文件创建时间查找
+-nogroup            # 查找无效属组的文件，即文件的属组在/etc/passwd中不存在
+-nouser             # 查找无效属主的文件，即文件的属主在/etc/passwd中不存在
+-size               # 按照文件大小查找
+-depth              # 使进入子目录进行查找前先行查找完本目录
+-fstype             # 查位于某一类型文件系统中的文件，这些文件系统通常可在/etc/fstab中找到
+-mount              # 查找文件时不跨越文件系统mount点
+-follow             # 如果遇到符号链接文件，就跟踪链接所指定的文件
+-cpio               # 对匹配的文件使用cpio目录，将他们备份到磁带设备中
+-prune              # 忽略某个目录
+-mmin n             # File’s data was last modified n minutes ago.
+-mtime n            # File’s data was last modified n*24 hours ago.
+-amin n             # access
+-atime n
+-cmin n             # change
+-ctime n
+
+示例
+# 查找大于/小于/等于100M的文件
+find ~ -size +100M/-100M/100M
+
+# 在深度为2和4文件夹之间查找passwd文件
+find -mindepth 3 -maxdepth 5 -name passwd
+
+# 对找到的文件进行md5转码
+find -iname "MyCProgram.c" -exec md5sum {} \;
+
+# 查找所有不是MyCProgram.c的文件
+find -maxdepth 1 -not -iname "MyCProgram.c"
+
+# 找到文件节点为1000的文件，并对其进行重命名
+find -inum 1000 -exec mv {} new-test-file-name \;
+
+# 查找所有仅对组用户有可读权限的文件
+find . -perm g=r -type f -exec ls -l {} \;
+find . -perm 040 -type f -exec ls -l {} \;
+
+# 查找所有空文件
+find ~ -empty
+
+# 查找最大的5个文件
+find . -type f -exec ls -s {} \; | sort -n -r | head -5
+
+# 查找最小的5个文件，不包含空文件
+find . -not -empty -type f -exec ls -s {} \; | sort -n  | head -5
+
+# 查找创建日期和修改日期大于ordinary_file的所有文件
+find -newer ordinary_file
+
+# 在当前文件夹下查找1小时内的所有改动文件
+find . -mmin -60
+
+# 查找1天内的改动文件(1*24小时)
+find . -mtime -1
+
+# 查找最近15分钟内修改的所有非隐藏文件
+find . -mmin -15 \( ! -regex ".*/\..*" \)
+
+# 抑制错误信息输出
+find -name "*.log" 2>>/dev/null
