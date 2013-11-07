@@ -33,7 +33,7 @@ cat_file()
   local file_count
 
   # 忽略ig_开头的文件
-  files=($(ls -F ${cur_file}| grep -iv '^ig_.*'))
+  files=($(ls -F ${cur_file} | grep -iv '^ig_.*\|^README\..*'))
   file_count=${#files[@]}
   if [[ ${file_count} -eq 0 ]]; then
     [ ${cur_file} == ${tip_dir} ] && {
