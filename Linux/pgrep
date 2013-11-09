@@ -1,0 +1,18 @@
+语法
+pgrep [options] [pattern]
+
+常用选项
+-f          # 显示进程的完整路径
+-g pgrp,... # 匹配指定的进程组中的进程
+-G gid,...  # 匹配指定的用户组开启的进程
+-l          # 显示出进程名
+-n          # 显示最近启动的进程
+-p ppid,... # 匹配指定的ppid的进程
+-s sid,...  # 匹配指定的session ID的进程
+-U udi,...  # 匹配指定的user ID的进程
+-v          # 取反结果
+-x          # 完全比配查询条件
+-signal     # 向匹配的结果发送进程信号,数字和符号信号都可
+
+# 列出所有Chrome进程信息
+ps -o user,pid,pcpu,pmem,command -p $(pgrep -d , Chrome)
