@@ -1,0 +1,29 @@
+进程优先级
+进程进入执行排程(schedule)的优先级, 称为nich值. 通常nice值介于-20~20之间.nice值越小, 优先级越高.
+nice运用于尚未执行的程序
+renice运用于已经在执行的进程
+
+nice语法
+nice -n nice值 程序
+
+说明
+指定程序执行时的优先级为某一nice值.
+其中nice值的范围是-20~10, 但只有root才能运用-20~0这个区段.
+若省略-n, 不指定nice值, 则预设使用nice值10来执行该程序.
+
+示例
+nice -n 5 htop
+nice htop
+
+renice语法
+renice nice值 -p PID -g 群组 -u 使用者名称
+可以省略-p, 在nice值后面直接接PID
+
+选项说明
+-p pid      # 指定进程pid
+-g group    # 指定所属的组进程
+-u user     # 指定所属的用户进程
+
+示例
+renice 5 1000
+
