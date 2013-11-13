@@ -15,14 +15,14 @@ nice -n nice值 程序
 nice -n 5 htop
 nice htop
 
-renice语法
+renice语法 调整已运行的进程的优先级
 renice nice值 -p PID -g 群组 -u 使用者名称
 可以省略-p, 在nice值后面直接接PID
 
 选项说明
 -p pid      # 指定进程pid
--g group    # 指定所属的组进程
--u user     # 指定所属的用户进程
+-g group    # 指定所属的组进程，修改所有隶属于该组下的所有进程的优先级
+-u user     # 指定所属的用户进程，修改所有隶属于该用户下的所有进程的优先级
 
 示例
 renice 5 1000

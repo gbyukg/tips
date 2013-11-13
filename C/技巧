@@ -1,0 +1,8 @@
+使用预处理进行注释
+#if 0
+code...
+#endif
+
+<ctype.h>
+
+
