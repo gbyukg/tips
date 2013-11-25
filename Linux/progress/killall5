@@ -1,0 +1,9 @@
+命令 killall5
+
+说明
+向所有除了内核进程及所属killall5进程session内的所有进程发送信号。
+因此该命令不会杀掉调用该命令的shell。
+
+常用选项
+-o ommitpid # 忽略指定的pid进程
+

@@ -151,8 +151,25 @@ fgetws()        # 从stdin等流中都去宽字符串
 const long *pvalue = $value;    # 禁止修改指针指向的值，但仍然可以更改指针所指向的地址
 long *const pvalue = $value;    # 禁止修改指针指向的地址，但可修改指针指向的值
 
+#分配75*sizeof(int)大小的内存空间
+int *pNum = (int *)malloc(75*sizeof(int));
 
-http://www.gnu.org/software/libc/manual/html_node/index.html
-http://pubs.opengroup.org/onlinepubs/9699919799/functions/contents.html
-http://gribblelab.org/CBootcamp/
+# 分配一个包含75个元素的数组内存，每个元素的大小为int类型的大小，并且初始化所有元素为0
+int *pNum = (int *)calloc(75, sizeof(int));
+
+# 释放malloc或calloc分配的内存空间
+free(pNum)
+
+# 重新分配malloc、calloc或realloc分配的内存空间
+# 若重新分配的内存空间大于之前分配的空间，否则新分配的内存将与以前分配的内存区域大小相同
+realloc(pNum, sizeof(int)*10);
+
+分配内存原则
+避免分配大量的小块内存。分配堆上的内存有一些系统开销，所以分配许多小的内存块比分配几个大内存块的系统开销大
+仅在需要是分配内存。只要使用完堆上的内存块，就释放它
+总是取保释放已分配的内存。在编写分配内存的代码时，就要确定在代码的什么地方释放内存
+在释放内存之前，确保不会无意中覆盖堆上分配的内存地址，否则程序会出现内存泄露。
+
+指针数组
+char *pS[3] = { NULL };     # 包含3个指针的数组
 

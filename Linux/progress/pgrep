@@ -2,6 +2,7 @@
 pgrep [options] [pattern]
 
 常用选项
+-d delimiter# 通过指定的delimiter来分隔显示各个进程 
 -f          # 显示进程的完整路径
 -g pgrp,... # 匹配指定的进程组中的进程
 -G gid,...  # 匹配指定的用户组开启的进程
@@ -15,4 +16,5 @@ pgrep [options] [pattern]
 -signal     # 向匹配的结果发送进程信号,数字和符号信号都可
 
 # 列出所有Chrome进程信息
-ps -o user,pid,pcpu,pmem,command -p $(pgrep -d , Chrome)
+ps -o user,pid,pcpu,pmem,command -p $(pgrep Chrome)
+

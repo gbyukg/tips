@@ -1,0 +1,13 @@
+命令 pidof
+
+说明
+根据进程名获取进程id(PID)
+
+语法
+pidof 进程名
+
+例：
+pidof chrome
+
+pgrep chrome
+
