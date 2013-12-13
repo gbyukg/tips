@@ -5,7 +5,6 @@
 -name fileName
 -iname fileName     # 查找时忽略大小写
 -maxdepth n         # 限制向字文件迭代的最大深度n
-! expr              # 反转结果
 -not expr           # 同!一样
 -inum inode         # 使用文件的节点号inode查找文件
 -empty              # 查找空文件
@@ -31,6 +30,14 @@
 -atime n
 -cmin n             # change
 -ctime n
+
+! expr              # 反转结果
+not expr            # ! expr
+expr1 expr2         # expr1 执行成功后才会执行expr2
+expr1 -a expr2      # and
+expr1 -o expr2      # expr1 执行失败时才会执行expr2
+expr1 -or expr2     # or
+expr1, expr2        # 两个表达式都会被执行,不过expr1的值会被丢弃, 存储expr2的值
 
 示例
 # 查找大于/小于/等于100M的文件
