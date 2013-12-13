@@ -75,3 +75,7 @@ find . -mmin -15 \( ! -regex ".*/\..*" \)
 
 # 抑制错误信息输出
 find -name "*.log" 2>>/dev/null
+
+# 忽略cache文件夹 -path必须放到第一个参数的位置
+# ! 用于翻转结果
+find . ! -path "./cache/*" -type f -name "*.txt"
